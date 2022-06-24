@@ -39,7 +39,9 @@ class Restaurant(models.Model):
     open_time = models.TimeField()
     close_time = models.TimeField()
     average_rating = models.FloatField(
-        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], blank=True
+        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)],
+        blank=True,
+        null=True,
     )
     status = models.CharField(max_length=10, choices=STATUS, default="open")
     is_spotlighted = models.BooleanField(default=False)
@@ -71,7 +73,7 @@ class Rating(models.Model):
 
 
 class Menu(models.Model):
-    resturant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
 
 

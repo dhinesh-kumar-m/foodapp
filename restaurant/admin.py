@@ -1,4 +1,5 @@
 from django.contrib import admin
+from restaurant.models import Cuisine
 from restaurant.models import Dish
 from restaurant.models import Menu
 from restaurant.models import Restaurant
@@ -21,7 +22,7 @@ class MenuAdmin(admin.ModelAdmin):
 
     @admin.display(description="Restaurant Name", ordering="restaurant__name")
     def get_restaurant(self, obj):
-        return obj.restaurant.name
+        return obj.restaurant.title
 
 
 @admin.register(Restaurant)
@@ -31,3 +32,14 @@ class CourseAdmin(admin.ModelAdmin):
         "created",
     ]
     search_fields = ["title", "overview"]
+
+
+@admin.register(Cuisine)
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ["name"]
+    list_filter = [
+        "name",
+    ]
+    search_fields = [
+        "name",
+    ]

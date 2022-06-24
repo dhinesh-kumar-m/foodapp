@@ -22,6 +22,9 @@ FOOD_TYPE_CHOICES = (
 class Cuisine(models.Model):
     name = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.name
+
 
 class Restaurant(models.Model):
     title = models.CharField(max_length=200)
@@ -36,7 +39,7 @@ class Restaurant(models.Model):
     open_time = models.TimeField()
     close_time = models.TimeField()
     average_rating = models.FloatField(
-        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
+        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], blank=True
     )
     status = models.CharField(max_length=10, choices=STATUS, default="open")
     is_spotlighted = models.BooleanField(default=False)

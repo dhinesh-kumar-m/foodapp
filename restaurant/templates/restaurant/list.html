@@ -6,7 +6,7 @@
 <div class="mt-3 sm:mt-0 sm:ml-4">
   <label for="mobile-search-candidate" class="sr-only">Search</label>
   <label for="desktop-search-candidate" class="sr-only">Search</label>
-  <div class="flex rounded-md shadow-sm">
+  <div class="flex rounded-md shadow-sm" x-data="{ filter: false }">
     <div class="relative flex-grow focus-within:z-10">
       <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
         <!-- Heroicon name: solid/search -->
@@ -24,8 +24,10 @@
         class="hidden focus:ring-indigo-500 focus:border-indigo-500 w-full rounded-none rounded-l-md pl-10 sm:block sm:text-sm border-gray-300"
         placeholder="Search candidates">
     </div>
-    <button type="button"
-      class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+    <div @click="filter = true">
+
+      <button type="button"
+      class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" id="menu-button" aria-expanded="false" aria-haspopup="true">
       <!-- Heroicon name: solid/sort-ascending -->
       <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
         aria-hidden="true">
@@ -41,6 +43,24 @@
           clip-rule="evenodd" />
       </svg>
     </button>
+
+
+    </div>
+
+    <div class="origin-top-right absolute right-7 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="filter" @click.away="filter = false" style="top: 130px;">
+      <div class="py-1" role="none">
+        <!--
+          Active: "bg-gray-100", Not Active: ""
+
+          Selected: "font-medium text-gray-900", Not Selected: "text-gray-500"
+        -->
+        <a href="?order=cost_for_two" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0"> Cost of two </a>
+
+        <a href="?order=average_rating" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3"> Rating: Low to High </a>
+
+        <a href="?order=-average_rating" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4"> Rating: High to Low </a>
+      </div>
+    </div>
   </div>
 
 </div>

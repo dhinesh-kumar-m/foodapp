@@ -1,6 +1,7 @@
 from django.contrib import admin
 from restaurant.models import Cuisine
 from restaurant.models import Dish
+from restaurant.models import Image
 from restaurant.models import Menu
 from restaurant.models import Restaurant
 
@@ -9,6 +10,10 @@ from restaurant.models import Restaurant
 
 class DishInline(admin.StackedInline):
     model = Dish
+
+
+class ImageInline(admin.StackedInline):
+    model = Image
 
 
 @admin.register(Menu)
@@ -32,6 +37,7 @@ class CourseAdmin(admin.ModelAdmin):
         "created",
     ]
     search_fields = ["title", "overview"]
+    inlines = [ImageInline]
 
 
 @admin.register(Cuisine)

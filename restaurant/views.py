@@ -14,7 +14,7 @@ def restaurant_list(request, list=None):
     sort = request.GET.get("order", "id")
     search = request.GET.get("search", None)
     restaurants = Restaurant.objects.order_by(sort)
-    user = User.objects.latest("id")
+    user = request.user
 
     if list == "bookmark":
         restaurants = restaurants.filter(users_bookmark=user)

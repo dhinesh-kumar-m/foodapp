@@ -144,3 +144,5 @@ INTERNAL_IPS = [
 ]
 
 NPM_BIN_PATH = "/usr/local/bin/npm"
+
+LOGIN_REDIRECT_URL = "restaurant:restaurant_list"

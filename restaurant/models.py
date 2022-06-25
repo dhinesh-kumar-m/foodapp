@@ -57,9 +57,15 @@ class Restaurant(models.Model):
     def __str__(self):
         return self.title
 
+    def get_image(self):
+        if self.restaurant_image.count():
+            return self.restaurant_image.order_by("id")[0].image
+
 
 class Image(models.Model):
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(
+        Restaurant, related_name="restaurant_image", on_delete=models.CASCADE
+    )
     image = models.ImageField(upload_to="restaurant/%Y/%m/%d", blank=True)
 
 

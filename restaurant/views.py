@@ -12,6 +12,7 @@ def index(request):
 
 def restaurant_list(request, list=None):
     sort = request.GET.get("order", "id")
+    search = request.GET.get("search", None)
     restaurants = Restaurant.objects.order_by(sort)
     user = User.objects.latest("id")
 
@@ -19,6 +20,9 @@ def restaurant_list(request, list=None):
         restaurants = restaurants.filter(users_bookmark=user)
     elif list == "visited":
         restaurants = restaurants.filter(users_visit=user)
+
+    if search:
+        restaurants = restaurants.filter(title__icontains=search)
 
     return render(
         request, "restaurant/list.html", {"restaurants": restaurants, "list": list}

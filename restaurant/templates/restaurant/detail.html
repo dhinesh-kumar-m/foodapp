@@ -42,28 +42,32 @@
                 <dt>Status</dt>
                 <dd class="text-gray-900">{{restaurant.status}}</dd>
               </div>
-              <div class="mt-10">
-                <div class="flex items-center justify-between">
-                  <dt>Cuisines</dt>
-
-                </div>
-
-                <div class="mt-4">
-                  <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
+              <div class="mt-15">
+                  <p class="font-bold">Cuisines</p>
+                  <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4 mt-4">
                     {% for cusine in restaurant.cuisines.all %}
                     <p
                       class="group relative border rounded-lg py-3 px-4 flex items-center justify-center text-sm font-medium  hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-2 bg-white shadow-sm text-gray-900 cursor-default">
                       {{cusine.name}}</p>
                     {% endfor %}
                   </div>
+              </div>
+              <section class="overflow-hidden text-gray-700 ">
+                <div class="container mx-auto py-3">
+                  <div class="flex flex-wrap -m-1 md:-m-2">
+                    {% for image in restaurant.restaurant_image.all %}
+                    <div class="flex flex-wrap w-1/3">
+                      <div class="w-full p-1 md:p-2">
+                        <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
+                          src="{{image.image.url}}">
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
                 </div>
-              </div>
-
-              <div class="flex justify-between border-t border-gray-200 text-gray-900 pt-6">
-                <dt class="text-base">Total</dt>
-                <dd class="text-base">$126.32</dd>
-              </div>
+              </section>
             </dl>
+
             <!-- <h2 id="information-heading" class="sr-only">Product information</h2>
               <p class="text-sm text-gray-500 mt-2">Version 1.0 (Updated <time datetime="2021-06-05">June 5, 2021</time>)</p> -->
           </div>
@@ -109,15 +113,8 @@
                 <span class="text-gray-300 h-5 w-5 flex-shrink-0" :class="{'text-yellow-300 ': (temp >= item)}">★</span>
               </template>
             </div>
-
-
-            <p class="sr-only">4 out of 5 stars</p>
           </div>
         </div>
-
-        <p class="text-gray-500 mt-6">The Application UI Icon Pack comes with over 200 icons in 3 styles: outline,
-          filled, and branded. This playful icon pack is tailored for complex application user interfaces with a
-          friendly and legible look.</p>
 
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
           <button type="button"

@@ -36,7 +36,16 @@ def restaurant_list(request, list=None):
 
 def restaurant_detail(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
+    updateVisited(request, restaurant)
     return render(request, "restaurant/detail.html", {"restaurant": restaurant})
+
+
+def updateVisited(request, restaurant):
+    if restaurant in request.user.restaurants_visited.all():
+        restaurant.users_visit.remove(request.user)
+    else:
+        restaurant.users_visit.add(request.user)
+    return True
 
 
 def add_review(request, id):

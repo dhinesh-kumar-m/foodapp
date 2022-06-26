@@ -27,3 +27,8 @@ def restaurant_list(request, list=None):
     return render(
         request, "restaurant/list.html", {"restaurants": restaurants, "list": list}
     )
+
+
+def restaurant_detail(request, id):
+    restaurant = get_object_or_404(Restaurant, id=id)
+    return render(request, "restaurant/detail.html", {"restaurant": restaurant})

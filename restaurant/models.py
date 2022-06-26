@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -56,6 +57,9 @@ class Restaurant(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("restaurant:restaurant_detail", args=[self.id])
 
     def get_image(self):
         if self.restaurant_image.count():

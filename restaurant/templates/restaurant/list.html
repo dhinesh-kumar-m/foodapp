@@ -108,7 +108,7 @@
       </div> -->
 
       {% for restaurant in restaurants %}
-      <div>
+      <a href="{{restaurant.get_absolute_url}}">
         <div class="relative">
           <div class="relative w-full h-72 rounded-lg overflow-hidden">
             <img
@@ -134,15 +134,9 @@
           <div class="absolute top-0 inset-x-0 h-72 rounded-lg p-1 flex items-end justify-end overflow-hidden">
             <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50">
             </div>
-            <button type="button" class="relative inline-flex items-center">
-              <svg class="-ml-1 mr-2 h-7 w-7 text-white hover:text-blue-300" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
-              </svg>
-            </button>
           </div>
         </div>
-      </div>
+    </a>
 
       {% endfor %}
 

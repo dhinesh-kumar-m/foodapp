@@ -25,6 +25,8 @@ def restaurant_list(request, list=None):
         restaurants = restaurants.filter(users_bookmark=user)
     elif list == "visited":
         restaurants = restaurants.filter(users_visit=user)
+    elif list == "spotlighted":
+        restaurants = restaurants.filter(is_spotlighted=True)
 
     if search:
         restaurants = restaurants.filter(title__icontains=search)

@@ -48,3 +48,12 @@ def add_review(request, id):
         review.user = request.user
         review.save()
     return redirect(reverse("restaurant:restaurant_detail", args=[id]))
+
+
+def add_bookmark(request, id):
+    restaurant = get_object_or_404(Restaurant, id=id)
+    if restaurant in request.user.restaurants_bookmarked.all():
+        restaurant.users_bookmark.remove(request.user)
+    else:
+        restaurant.users_bookmark.add(request.user)
+    return redirect(reverse("restaurant:restaurant_detail", args=[id]))

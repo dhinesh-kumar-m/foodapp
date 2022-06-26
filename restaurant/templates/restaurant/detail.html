@@ -67,7 +67,21 @@
                 </div>
               </section>
             </dl>
-
+            <form action="{% url 'restaurant:bookmark' restaurant.id %}" method="post">
+              {% csrf_token %}
+              <span class="relative z-0 inline-flex shadow-sm rounded-md">
+                <button type="submit"
+                  class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                  <!-- Heroicon name: solid/bookmark -->
+                  <svg
+                    class="-ml-1 mr-2 h-5 w-5 {% if restaurant in request.user.restaurants_bookmarked.all %} text-blue-500 {% else %} text-gray-400 {% endif %}"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
+                  </svg>
+                  Bookmark{% if restaurant in request.user.restaurants_bookmarked.all %}ed{% endif %}
+                </button>
+              </span>
+            </form>
             <p class="font-large mt-3">Rate Us</p>
             <div class="flex items-start space-x-4 mt-5">
               <div class="flex-shrink-0">
@@ -79,7 +93,7 @@
                 <form action="{% url 'restaurant:review' restaurant.id %}" class="relative" method="post">
 
                   <div x-data="{ temp: 2, orig: 0 }" class="flex cursor-pointer text-4xl" @click="orig = temp">
-                    <input type="number" :value="orig" class="hidden" name='rating' id="rating"/>
+                    <input type="number" :value="orig" class="hidden" name='rating' id="rating" />
 
                     <template x-for="item in [1,2,3,4,5]">
                       <span @mouseenter="temp = item" @mouseleave="temp = orig" class="text-gray-300"

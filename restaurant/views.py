@@ -40,7 +40,12 @@ def restaurant_detail(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
     if restaurant not in request.user.restaurants_visited.all():
         restaurant.users_visit.add(request.user)
-    return render(request, "restaurant/detail.html", {"restaurant": restaurant})
+    hide_review = restaurant.rating_set.filter(user=request.user).exists()
+    return render(
+        request,
+        "restaurant/detail.html",
+        {"restaurant": restaurant, "hide_review": hide_review},
+    )
 
 
 def updateVisited(request, restaurant):

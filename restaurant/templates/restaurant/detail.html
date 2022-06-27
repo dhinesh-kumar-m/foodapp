@@ -89,6 +89,9 @@
               </form>
             </div>
 
+
+            {% if not hide_review %}
+
             <p class="font-large mt-3">Rate Us</p>
             <div class="flex items-start space-x-4 mt-5">
               <div class="flex-shrink-0">
@@ -134,6 +137,7 @@
                 </form>
               </div>
             </div>
+            {% endif %}
 
             <!-- <h2 id="information-heading" class="sr-only">Product information</h2>
               <p class="text-sm text-gray-500 mt-2">Version 1.0 (Updated <time datetime="2021-06-05">June 5, 2021</time>)</p> -->

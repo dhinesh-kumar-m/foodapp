@@ -24,7 +24,6 @@
               <span>&ThinSpace;<img class="w-4 h-4  text-white-400 inline-block"
                   src="{% static 'images/'|add:restaurant.type|add:'.png' %}" alt=""></span>
             </h1>
-
             <dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
               <div class="flex justify-between">
                 <dt>Address</dt>
@@ -52,28 +51,27 @@
                   {% endfor %}
                 </div>
               </div>
-              <section class="overflow-hidden text-gray-700 ">
-                <div class="container mx-auto py-3">
-                  <div class="flex flex-wrap -m-1 md:-m-2">
-                    {% for image in restaurant.restaurant_image.all %}
-                    <div class="flex flex-wrap w-1/3">
-                      <div class="w-full p-1 md:p-2">
-                        <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
-                          src="{{image.image.url}}">
-                      </div>
-                    </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </section>
             </dl>
+            <section class="overflow-hidden text-gray-700 ">
+              <div class="container mx-auto py-3">
+                <div class="flex flex-wrap -m-1 md:-m-2">
+                  {% for image in restaurant.restaurant_image.all %}
+                  <div class="flex flex-wrap w-1/3">
+                    <div class="w-full p-1 md:p-2">
+                      <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
+                        src="{{image.image.url}}">
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </section>
             <div class="flex">
               <form action="{% url 'restaurant:bookmark' restaurant.id %}" method="post">
                 {% csrf_token %}
                 <span class="m-2 relative z-0 inline-flex shadow-sm rounded-md">
                   <button type="submit"
                     class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                    <!-- Heroicon name: solid/bookmark -->
                     <svg
                       class="-ml-1 mr-2 h-5 w-5 {% if restaurant in request.user.restaurants_bookmarked.all %} text-blue-500 {% else %} text-gray-400 {% endif %}"
                       xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -91,7 +89,6 @@
               </form>
             </div>
 
-
             {% if not user_review %}
 
             <p class="font-large mt-3">Rate Us</p>
@@ -101,7 +98,6 @@
               </div>
               <div class="min-w-0 flex-1">
                 <form action="{% url 'restaurant:review' restaurant.id %}" class="relative" method="post">
-
                   <div x-data="{ temp: 2, orig: 0 }" class="flex cursor-pointer text-4xl" @click="orig = temp">
                     <input type="number" :value="orig" class="hidden" name='rating' id="rating" />
 
@@ -117,17 +113,13 @@
                     <textarea rows="3" name="review" id="review"
                       class="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm"
                       placeholder="Add your review..."></textarea>
-
-                    <!-- Spacer element to match the height of the toolbar -->
                     <div class="py-2" aria-hidden="true">
-                      <!-- Matches height of button in toolbar (1px border + 36px content height) -->
                       <div class="py-px">
                         <div class="h-9"></div>
                       </div>
                     </div>
                   </div>
                   {% csrf_token %}
-
                   <div class="absolute bottom-0 inset-x-0 pl-3 pr-2 py-2 flex justify-end">
                     <div class="flex-shrink-0">
                       <button type="submit"
@@ -138,49 +130,12 @@
               </div>
             </div>
             {% endif %}
-
-
-            <!-- <h2 id="information-heading" class="sr-only">Product information</h2>
-              <p class="text-sm text-gray-500 mt-2">Version 1.0 (Updated <time datetime="2021-06-05">June 5, 2021</time>)</p> -->
           </div>
 
           <div>
             <h3 class="sr-only">Reviews</h3>
-            <!-- <div class="flex items-center">
-              <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                fill="currentColor" aria-hidden="true">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-
-              <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                fill="currentColor" aria-hidden="true">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-
-              <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                fill="currentColor" aria-hidden="true">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-
-              <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                fill="currentColor" aria-hidden="true">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-              <svg class="text-gray-300 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                fill="currentColor" aria-hidden="true">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-            </div> -->
-
-
             <div x-data="{ temp: {{restaurant.average_rating}}}" class="flex cursor-pointer text-2xl">
               <input type="number" class="hidden" />
-
               <template x-for="item in [1,2,3,4,5]">
                 <span class="text-gray-300 h-5 w-5 flex-shrink-0" :class="{'text-yellow-300 ': (temp >= item)}">★</span>
               </template>
@@ -193,20 +148,15 @@
         <div x-data="{ tab: 'review' }">
           <div class="border-b border-gray-200">
             <div class="-mb-px flex space-x-8" aria-orientation="horizontal" role="tablist">
-              <!-- Selected: "border-indigo-600 text-indigo-600", Not Selected: "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300" -->
               <button @click="tab = 'review'" id="tab-reviews"
                 class="border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300 whitespace-nowrap py-6 border-b-2 font-medium text-sm"
                 aria-controls="tab-panel-reviews" role="tab" type="button">Customer Reviews</button>
               <button @click="tab = 'menu'" id="tab-faq"
                 class="border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300 whitespace-nowrap py-6 border-b-2 font-medium text-sm"
                 aria-controls="tab-panel-faq" role="tab" type="button">Menu</button>
-              <button @click="tab = 'license'" id="tab-license"
-                class="border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300 whitespace-nowrap py-6 border-b-2 font-medium text-sm"
-                aria-controls="tab-panel-license" role="tab" type="button">License</button>
             </div>
           </div>
 
-          <!-- 'Customer Reviews' panel, show/hide based on tab state -->
           <div id="tab-panel-reviews" class="-mb-10" aria-labelledby="tab-reviews" role="tabpanel" tabindex="0">
             <h3 class="sr-only">Customer Reviews</h3>
 
@@ -244,7 +194,8 @@
                     <!-- Trigger for Modal -->
                     <button type="button" @click="showModal = true">edit</button>
 
-                    <form action="{% url 'restaurant:review_delete' user_review.id %}" method="delete" class="inline-block">
+                    <form action="{% url 'restaurant:review_delete' user_review.id %}" method="delete"
+                      class="inline-block">
                       <button type="submit">delete</button>
                     </form>
                     <!-- Modal -->
@@ -258,7 +209,6 @@
                         <!-- Title / Close-->
                         <div class="flex items-center justify-between">
                           <h5 class="mr-3 text-black max-w-none">Edit Review</h5>
-
                           <button type="button" class="z-50 cursor-pointer" @click="showModal = false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                               fill="none" stroke="currentColor">
@@ -275,10 +225,10 @@
                               alt="">
                           </div>
                           <div class="min-w-0 flex-1">
-                            <form action="{% url 'restaurant:review_update' user_review.id %}" class="relative" method="post">
-
-                              <div x-data="{ temp: {{user_review.rating}}, orig: {{user_review.rating}} }" class="flex cursor-pointer text-4xl"
-                                @click="orig = temp">
+                            <form action="{% url 'restaurant:review_update' user_review.id %}" class="relative"
+                              method="post">
+                              <div x-data="{ temp: {{user_review.rating}}, orig: {{user_review.rating}} }"
+                                class="flex cursor-pointer text-4xl" @click="orig = temp">
                                 <input type="number" :value="orig" class="hidden" name='rating' id="rating" />
 
                                 <template x-for="item in [1,2,3,4,5]">
@@ -286,24 +236,14 @@
                                     :class="{'text-yellow-300': (temp >= item)}">★</span>
                                 </template>
                               </div>
-
                               <div
                                 class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
                                 <label for="review" class="sr-only">Add your Review</label>
                                 <textarea rows="3" name="review" id="review"
                                   class="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm"
                                   placeholder="Add your review...">{{ user_review.review }}</textarea>
-
-                                <!-- Spacer element to match the height of the toolbar -->
-                                <div class="py-2" aria-hidden="true">
-                                  <!-- Matches height of button in toolbar (1px border + 36px content height) -->
-                                  <div class="py-px">
-                                    <div class="h-9"></div>
-                                  </div>
-                                </div>
                               </div>
                               {% csrf_token %}
-
                               <div class="absolute bottom-0 inset-x-0 pl-3 pr-2 py-2 flex justify-end">
                                 <div class="flex-shrink-0">
                                   <button type="submit"
@@ -321,11 +261,7 @@
               </div>
               {% endfor %}
             </div>
-
-
-
             <div x-show="tab === 'menu'">
-              <!-- 'FAQ' panel, show/hide based on tab state -->
               <div id="tab-panel-faq" class="text-sm text-gray-500" aria-labelledby="tab-faq" role="tabpanel"
                 tabindex="0">
                 <h3 class="sr-only">Menu</h3>
@@ -345,46 +281,9 @@
                 </dl>
               </div>
             </div>
-            <div x-show="tab === 'license'">
-              <!-- 'License' panel, show/hide based on tab state -->
-              <div id="tab-panel-license" class="pt-10" aria-labelledby="tab-license" role="tabpanel" tabindex="0">
-                <h3 class="sr-only">License</h3>
-
-                <div class="prose prose-sm max-w-none text-gray-500">
-                  <h4>Overview</h4>
-
-                  <p>For personal and professional use. You cannot resell or redistribute these icons in their original
-                    or
-                    modified state.</p>
-
-                  <ul role="list">
-                    <li>You're allowed to use the icons in unlimited projects.</li>
-                    <li>Attribution is not required to use the icons.</li>
-                  </ul>
-
-                  <h4>What you can do with it</h4>
-
-                  <ul role="list">
-                    <li>Use them freely in your personal and professional work.</li>
-                    <li>Make them your own. Change the colors to suit your project or brand.</li>
-                  </ul>
-
-                  <h4>What you can't do with it</h4>
-
-                  <ul role="list">
-                    <li>Don't be greedy. Selling or distributing these icons in their original or modified state is
-                      prohibited.</li>
-                    <li>Don't be evil. These icons cannot be used on websites or applications that promote illegal or
-                      immoral beliefs or activities.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
     </div>
   </div>
-
   {% endblock %}

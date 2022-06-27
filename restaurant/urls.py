@@ -12,6 +12,9 @@ urlpatterns = [
     path(
         "restaurant/review/<int:id>/update", views.update_review, name="review_update"
     ),
+    path(
+        "restaurant/review/<int:id>/delete", views.delete_review, name="review_delete"
+    ),
     path("restaurant/bookmark/<int:id>", views.add_bookmark, name="bookmark"),
     path("restaurant/visited/<int:id>", views.delete_visited, name="remove_visited"),
 ]

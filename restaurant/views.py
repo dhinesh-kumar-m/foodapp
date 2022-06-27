@@ -79,6 +79,14 @@ def update_review(request, id):
     )
 
 
+def delete_review(request, id):
+    rating = get_object_or_404(Rating, id=id)
+    rating.delete()
+    return redirect(
+        reverse("restaurant:restaurant_detail", args=[rating.restaurant.id])
+    )
+
+
 def add_bookmark(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
     if restaurant in request.user.restaurants_bookmarked.all():

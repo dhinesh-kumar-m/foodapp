@@ -244,6 +244,9 @@
                     <!-- Trigger for Modal -->
                     <button type="button" @click="showModal = true">edit</button>
 
+                    <form action="{% url 'restaurant:review_delete' user_review.id %}" method="delete" class="inline-block">
+                      <button type="submit">delete</button>
+                    </form>
                     <!-- Modal -->
                     <div
                       class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50"

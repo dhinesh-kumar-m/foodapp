@@ -13,7 +13,7 @@
     {% tailwind_css %}
 </head>
 
-<body class="font-serif leading-normal tracking-normal" style="font-family:Okra,Helvetica,sans-serif;">
+<body class="font-serif leading-normal tracking-normal" style="font-family:Okra,Helvetica,sans-serif;" x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
     <!-- This example requires Tailwind CSS v2.0+ -->
     <nav class="bg-white shadow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

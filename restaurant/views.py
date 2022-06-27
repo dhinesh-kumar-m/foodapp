@@ -32,9 +32,30 @@ def restaurant_list(request, list=None):
     if search:
         restaurants = restaurants.filter(title__icontains=search)
 
+    if request.method == "POST":
+        restaurants = search_filter(request, restaurants)
+
     return render(
         request, "restaurant/list.html", {"restaurants": restaurants, "list": list}
     )
+
+
+def search_filter(request, restaurants):
+    data = request.POST
+    cuisine = data.getlist("cuisine", None)
+    rating = data.getlist("rating", None)
+    type = data.getlist("types", None)
+    status = data.getlist("status", None)
+
+    if cuisine:
+        restaurants = restaurants.filter(cuisines__in=cuisine)
+    if rating:
+        restaurants = restaurants.filter(average_rating__in=rating)
+    if type:
+        restaurants = restaurants.filter(type__in=type)
+    if status:
+        restaurants = restaurants.filter(status__in=status)
+    return restaurants
 
 
 def restaurant_detail(request, id):

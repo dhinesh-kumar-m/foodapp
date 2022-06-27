@@ -85,19 +85,19 @@
               </form>
               <form action="{% url 'restaurant:remove_visited' restaurant.id %}" method="post">
                 {% csrf_token %}
-                <button type="submit" class="m-2 inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-lg transition duration-150 ease-in-out">Remove Visited</button>
+                <button type="submit"
+                  class="m-2 inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-lg transition duration-150 ease-in-out">Remove
+                  Visited</button>
               </form>
             </div>
 
 
-            {% if not hide_review %}
+            {% if not user_review %}
 
             <p class="font-large mt-3">Rate Us</p>
             <div class="flex items-start space-x-4 mt-5">
               <div class="flex-shrink-0">
-                <img class="inline-block h-10 w-10 rounded-full"
-                  src="{{request.user.profile.photo.url}}"
-                  alt="">
+                <img class="inline-block h-10 w-10 rounded-full" src="{{request.user.profile.photo.url}}" alt="">
               </div>
               <div class="min-w-0 flex-1">
                 <form action="{% url 'restaurant:review' restaurant.id %}" class="relative" method="post">
@@ -138,6 +138,7 @@
               </div>
             </div>
             {% endif %}
+
 
             <!-- <h2 id="information-heading" class="sr-only">Product information</h2>
               <p class="text-sm text-gray-500 mt-2">Version 1.0 (Updated <time datetime="2021-06-05">June 5, 2021</time>)</p> -->
@@ -212,30 +213,108 @@
             <div x-show="tab === 'review'">
 
               {% for rating in restaurant.rating_set.all %}
+              <div class="flex justify-between">
 
-              <div class="flex text-sm text-gray-500 space-x-4">
-                <div class="flex-none py-3">
-                  <img
-                    src="{{rating.user.profile.photo.url}}"
-                    alt="" class="w-10 h-10 bg-gray-100 rounded-full">
-                </div>
-                <div class="py-3">
-                  <h3 class="font-medium text-gray-900">{{rating.user.get_full_name}}</h3>
-                  <p><time datetime="2021-07-16">July 16, 2021</time></p>
+                <div class="flex text-sm text-gray-500 space-x-4">
 
-                  <div x-data="{ temp: {{rating.rating}}}" class="flex cursor-default text-2xl mt-1">
-                    <input type="number" class="hidden" />
-
-                    <template x-for="item in [1,2,3,4,5]">
-                      <span class="text-gray-300 h-5 w-5 flex-shrink-0"
-                        :class="{'text-yellow-300 ': (temp >= item)}">★</span>
-                    </template>
+                  <div class="flex-none py-3">
+                    <img src="{{rating.user.profile.photo.url}}" alt="" class="w-10 h-10 bg-gray-100 rounded-full">
                   </div>
+                  <div class="py-3">
+                    <h3 class="font-medium text-gray-900">{{rating.user.get_full_name}}</h3>
+                    <p><time datetime="2021-07-16">July 16, 2021</time></p>
 
-                  <div class="mt-4 prose prose-sm max-w-none text-gray-500">
-                    <p>{{rating.review}}</p>
+                    <div x-data="{ temp: {{rating.rating}}}" class="flex cursor-default text-2xl mt-1">
+                      <input type="number" class="hidden" />
+
+                      <template x-for="item in [1,2,3,4,5]">
+                        <span class="text-gray-300 h-5 w-5 flex-shrink-0"
+                          :class="{'text-yellow-300 ': (temp >= item)}">★</span>
+                      </template>
+                    </div>
+
+                    <div class="mt-4 prose prose-sm max-w-none text-gray-500">
+                      <p>{{rating.review}}</p>
+                    </div>
                   </div>
                 </div>
+                {% if rating.id == user_review.id %}
+                <div class="m-3">
+                  <div x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
+                    <!-- Trigger for Modal -->
+                    <button type="button" @click="showModal = true">edit</button>
+
+                    <!-- Modal -->
+                    <div
+                      class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
+                      x-show="showModal">
+                      <!-- Modal inner -->
+                      <div class="px-6 py-2 mx-auto text-left bg-white rounded shadow-lg"
+                        @click.away="showModal = false" x-transition:enter="motion-safe:ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                        <!-- Title / Close-->
+                        <div class="flex items-center justify-between">
+                          <h5 class="mr-3 text-black max-w-none">Edit Review</h5>
+
+                          <button type="button" class="z-50 cursor-pointer" @click="showModal = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                              fill="none" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- content -->
+                        <div class="flex items-start space-x-4 mt-5">
+                          <div class="flex-shrink-0">
+                            <img class="inline-block h-10 w-10 rounded-full" src="{{request.user.profile.photo.url}}"
+                              alt="">
+                          </div>
+                          <div class="min-w-0 flex-1">
+                            <form action="{% url 'restaurant:review_update' user_review.id %}" class="relative" method="post">
+
+                              <div x-data="{ temp: {{user_review.rating}}, orig: {{user_review.rating}} }" class="flex cursor-pointer text-4xl"
+                                @click="orig = temp">
+                                <input type="number" :value="orig" class="hidden" name='rating' id="rating" />
+
+                                <template x-for="item in [1,2,3,4,5]">
+                                  <span @mouseenter="temp = item" @mouseleave="temp = orig" class="text-gray-300"
+                                    :class="{'text-yellow-300': (temp >= item)}">★</span>
+                                </template>
+                              </div>
+
+                              <div
+                                class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
+                                <label for="review" class="sr-only">Add your Review</label>
+                                <textarea rows="3" name="review" id="review"
+                                  class="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm"
+                                  placeholder="Add your review...">{{ user_review.review }}</textarea>
+
+                                <!-- Spacer element to match the height of the toolbar -->
+                                <div class="py-2" aria-hidden="true">
+                                  <!-- Matches height of button in toolbar (1px border + 36px content height) -->
+                                  <div class="py-px">
+                                    <div class="h-9"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              {% csrf_token %}
+
+                              <div class="absolute bottom-0 inset-x-0 pl-3 pr-2 py-2 flex justify-end">
+                                <div class="flex-shrink-0">
+                                  <button type="submit"
+                                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Post</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
               </div>
               {% endfor %}
             </div>

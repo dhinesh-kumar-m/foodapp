@@ -9,6 +9,9 @@ urlpatterns = [
     path("<slug:list>", views.restaurant_list, name="user_list"),
     path("restaurant/<int:id>", views.restaurant_detail, name="restaurant_detail"),
     path("restaurant/review/<int:id>", views.add_review, name="review"),
+    path(
+        "restaurant/review/<int:id>/update", views.update_review, name="review_update"
+    ),
     path("restaurant/bookmark/<int:id>", views.add_bookmark, name="bookmark"),
     path("restaurant/visited/<int:id>", views.delete_visited, name="remove_visited"),
 ]

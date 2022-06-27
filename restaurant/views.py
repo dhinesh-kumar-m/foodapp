@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.views.generic.list import ListView
 
 from .forms import RatingForm
+from .models import Rating
 from .models import Restaurant
 
 # Create your views here.
@@ -40,11 +41,13 @@ def restaurant_detail(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
     if restaurant not in request.user.restaurants_visited.all():
         restaurant.users_visit.add(request.user)
-    hide_review = restaurant.rating_set.filter(user=request.user).exists()
+    user_review = restaurant.rating_set.filter(user=request.user)
+    if user_review.count() > 0:
+        user_review = user_review[0]
     return render(
         request,
         "restaurant/detail.html",
-        {"restaurant": restaurant, "hide_review": hide_review},
+        {"restaurant": restaurant, "user_review": user_review},
     )
 
 
@@ -64,6 +67,16 @@ def add_review(request, id):
         review.user = request.user
         review.save()
     return redirect(reverse("restaurant:restaurant_detail", args=[id]))
+
+
+def update_review(request, id):
+    rating = get_object_or_404(Rating, id=id)
+    form = RatingForm(instance=rating, data=request.POST)
+    if form.is_valid():
+        review = form.save(commit=True)
+    return redirect(
+        reverse("restaurant:restaurant_detail", args=[rating.restaurant.id])
+    )
 
 
 def add_bookmark(request, id):

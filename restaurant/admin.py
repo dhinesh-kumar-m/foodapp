@@ -3,6 +3,7 @@ from restaurant.models import Cuisine
 from restaurant.models import Dish
 from restaurant.models import Image
 from restaurant.models import Menu
+from restaurant.models import Profile
 from restaurant.models import Restaurant
 
 # Register your models here.
@@ -49,3 +50,8 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = [
         "name",
     ]
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ["user", "photo"]

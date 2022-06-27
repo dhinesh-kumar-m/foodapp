@@ -51,13 +51,6 @@ def restaurant_detail(request, id):
     )
 
 
-def updateVisited(request, restaurant):
-    if restaurant in request.user.restaurants_visited.all():
-        restaurant.users_visit.remove(request.user)
-        restaurant.users_visit.add(request.user)
-    return True
-
-
 def add_review(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
     form = RatingForm(request.POST)

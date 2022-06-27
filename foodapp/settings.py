@@ -36,13 +36,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "restaurant.apps.RestaurantConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "restaurant.apps.RestaurantConfig",
     "tailwind",
     "theme",
     "django_browser_reload",
@@ -146,3 +146,5 @@ INTERNAL_IPS = [
 NPM_BIN_PATH = "/usr/bin/npm"
 
 LOGIN_REDIRECT_URL = "restaurant:restaurant_list"
+
+LOGOUT_REDIRECT_URL = "login"

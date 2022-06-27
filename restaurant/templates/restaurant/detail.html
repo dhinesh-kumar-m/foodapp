@@ -210,12 +210,12 @@
               {% for rating in restaurant.rating_set.all %}
 
               <div class="flex text-sm text-gray-500 space-x-4">
-                <div class="flex-none py-10">
+                <div class="flex-none py-3">
                   <img
                     src="{{rating.user.profile.photo.url}}"
                     alt="" class="w-10 h-10 bg-gray-100 rounded-full">
                 </div>
-                <div class="py-10">
+                <div class="py-3">
                   <h3 class="font-medium text-gray-900">{{rating.user.get_full_name}}</h3>
                   <p><time datetime="2021-07-16">July 16, 2021</time></p>
 

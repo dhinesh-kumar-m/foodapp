@@ -38,14 +38,14 @@ def restaurant_list(request, list=None):
 
 def restaurant_detail(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
-    updateVisited(request, restaurant)
+    if restaurant not in request.user.restaurants_visited.all():
+        restaurant.users_visit.add(request.user)
     return render(request, "restaurant/detail.html", {"restaurant": restaurant})
 
 
 def updateVisited(request, restaurant):
     if restaurant in request.user.restaurants_visited.all():
         restaurant.users_visit.remove(request.user)
-    else:
         restaurant.users_visit.add(request.user)
     return True
 
@@ -68,3 +68,9 @@ def add_bookmark(request, id):
     else:
         restaurant.users_bookmark.add(request.user)
     return redirect(reverse("restaurant:restaurant_detail", args=[id]))
+
+
+def delete_visited(request, id):
+    restaurant = get_object_or_404(Restaurant, id=id)
+    restaurant.users_visit.remove(request.user)
+    return redirect("restaurant:restaurant_list")

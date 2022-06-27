@@ -67,21 +67,28 @@
                 </div>
               </section>
             </dl>
-            <form action="{% url 'restaurant:bookmark' restaurant.id %}" method="post">
-              {% csrf_token %}
-              <span class="relative z-0 inline-flex shadow-sm rounded-md">
-                <button type="submit"
-                  class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                  <!-- Heroicon name: solid/bookmark -->
-                  <svg
-                    class="-ml-1 mr-2 h-5 w-5 {% if restaurant in request.user.restaurants_bookmarked.all %} text-blue-500 {% else %} text-gray-400 {% endif %}"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
-                  </svg>
-                  Bookmark{% if restaurant in request.user.restaurants_bookmarked.all %}ed{% endif %}
-                </button>
-              </span>
-            </form>
+            <div class="flex">
+              <form action="{% url 'restaurant:bookmark' restaurant.id %}" method="post">
+                {% csrf_token %}
+                <span class="m-2 relative z-0 inline-flex shadow-sm rounded-md">
+                  <button type="submit"
+                    class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                    <!-- Heroicon name: solid/bookmark -->
+                    <svg
+                      class="-ml-1 mr-2 h-5 w-5 {% if restaurant in request.user.restaurants_bookmarked.all %} text-blue-500 {% else %} text-gray-400 {% endif %}"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
+                    </svg>
+                    Bookmark{% if restaurant in request.user.restaurants_bookmarked.all %}ed{% endif %}
+                  </button>
+                </span>
+              </form>
+              <form action="{% url 'restaurant:remove_visited' restaurant.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="m-2 inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-lg transition duration-150 ease-in-out">Remove Visited</button>
+              </form>
+            </div>
+
             <p class="font-large mt-3">Rate Us</p>
             <div class="flex items-start space-x-4 mt-5">
               <div class="flex-shrink-0">

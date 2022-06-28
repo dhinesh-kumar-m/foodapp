@@ -107,35 +107,6 @@ class DeleteReview(ReviewMixin, DeleteView):
     pass
 
 
-def add_review(request, id):
-    restaurant = get_object_or_404(Restaurant, id=id)
-    form = RatingForm(request.POST)
-    if form.is_valid():
-        review = form.save(commit=False)
-        review.restaurant = restaurant
-        review.user = request.user
-        review.save()
-    return redirect(reverse("restaurant:restaurant_detail", args=[id]))
-
-
-def update_review(request, id):
-    rating = get_object_or_404(Rating, id=id)
-    form = RatingForm(instance=rating, data=request.POST)
-    if form.is_valid():
-        review = form.save(commit=True)
-    return redirect(
-        reverse("restaurant:restaurant_detail", args=[rating.restaurant.id])
-    )
-
-
-def delete_review(request, id):
-    rating = get_object_or_404(Rating, id=id)
-    rating.delete()
-    return redirect(
-        reverse("restaurant:restaurant_detail", args=[rating.restaurant.id])
-    )
-
-
 def add_bookmark(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
     if restaurant in request.user.restaurants_bookmarked.all():

@@ -119,4 +119,4 @@ def add_bookmark(request, id):
 def delete_visited(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
     restaurant.users_visit.remove(request.user)
-    return redirect("restaurant:restaurant_list")
+    return redirect("restaurant:visited_list")

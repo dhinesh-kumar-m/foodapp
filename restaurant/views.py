@@ -41,9 +41,8 @@ def restaurant_list(request, list=None):
     )
 
 
-class RestaurantList(ListView):
+class RestaurantListMixin(ListView):
     model = Restaurant
-    template_name = "restaurant/list.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -53,34 +52,35 @@ class RestaurantList(ListView):
         return context
 
 
-class BookmarkList(ListView):
-    pass
+class RestaurantList(RestaurantListMixin):
+    template_name = "restaurant/list.html"
 
 
-class VisitedList(ListView):
-    pass
+class BookmarkList(RestaurantListMixin):
+    template_name = "restaurant/bookmark/list.html"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(users_bookmark=self.request.user)
+        return queryset
 
 
-class SpotlightList(ListView):
-    pass
+class VisitedList(RestaurantListMixin):
+    template_name = "restaurant/visited/list.html"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(users_visit=self.request.user)
+        return queryset
 
 
-def search_filter(request, restaurants):
-    data = request.POST
-    cuisine = data.getlist("cuisine", None)
-    rating = data.getlist("rating", None)
-    type = data.getlist("types", None)
-    status = data.getlist("status", None)
+class SpotlightList(RestaurantListMixin):
+    template_name = "restaurant/spotlight/list.html"
 
-    if cuisine:
-        restaurants = restaurants.filter(cuisines__in=cuisine)
-    if rating:
-        restaurants = restaurants.filter(average_rating__in=rating)
-    if type:
-        restaurants = restaurants.filter(type__in=type)
-    if status:
-        restaurants = restaurants.filter(status__in=status)
-    return restaurants
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_spotlighted=True)
+        return queryset
 
 
 def restaurant_detail(request, id):

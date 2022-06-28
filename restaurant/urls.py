@@ -8,6 +8,9 @@ urlpatterns = [
     # path("", views.restaurant_list, name="restaurant_list"),
     # path("<slug:list>", views.restaurant_list, name="user_list"),
     path("", views.RestaurantList.as_view(), name="restaurant_list"),
+    path("restaurant/bookmark", views.BookmarkList.as_view(), name="bookmark_list"),
+    path("restaurant/visited", views.VisitedList.as_view(), name="visited_list"),
+    path("restaurant/spotlight", views.SpotlightList.as_view(), name="spotlight_list"),
     path("restaurant/<int:id>", views.restaurant_detail, name="restaurant_detail"),
     path("restaurant/review/<int:id>", views.add_review, name="review"),
     path(

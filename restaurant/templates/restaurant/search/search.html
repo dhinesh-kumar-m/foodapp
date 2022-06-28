@@ -1,0 +1,61 @@
+<div class="mt-3 sm:mt-0 sm:ml-4">
+    <label for="mobile-search-candidate" class="sr-only">Search</label>
+    <label for="desktop-search-candidate" class="sr-only">Search</label>
+    <div class="flex rounded-md shadow-sm" x-data="{ filter: false }">
+        <div class="relative flex-grow focus-within:z-10">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                    fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+            <form action="" method="get">
+                <input type="text" name="title" id="desktop-search-candidate"
+                    class="hidden focus:ring-indigo-500 focus:border-indigo-500 w-full rounded-none rounded-l-md pl-10 sm:block sm:text-sm border-gray-300"
+                    placeholder="Search candidates" @keyup.enter="wire:click='submit'">
+            </form>
+        </div>
+        <div>
+            <button type="button"
+                class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium  text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 mx-0.5"
+                id="menu-button" aria-expanded="false" aria-haspopup="true" @click="showModal = true">filter</button>
+        </div>
+        <div @click="filter = true">
+            <button type="button"
+                class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                id="menu-button" aria-expanded="false" aria-haspopup="true">
+                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                    fill="currentColor" aria-hidden="true">
+                    <path
+                        d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+                </svg>
+                <span class="ml-2">Sort</span>
+                <svg class="ml-2.5 -mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                    fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="origin-top-right absolute right-64 z-10 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+            role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="filter"
+            @click.away="filter = false" style="top: 130px;">
+            <div class="py-1" role="none">
+                <a href="{% url 'restaurant:restaurant_list' %}?order_by=cost_for_two&{{ request.GET.urlencode }}"
+                    class="text-gray-500 block px-4 py-2 text-sm">Cost of two</a>
+                <a href="{% url 'restaurant:restaurant_list' %}?order_by=average_rating&{{ request.GET.urlencode }}"
+                    class="text-gray-500 block px-4 py-2 text-sm">Rating: Low to High</a>
+                <a href="{% url 'restaurant:restaurant_list' %}?order_by=-average_rating&{{ request.GET.urlencode }}"
+                    class="text-gray-500 block px-4 py-2 text-sm">Rating: High to Low</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="filter-model">
+    {% include 'restaurant/models/filter.html' %}
+</div>

@@ -1,0 +1,267 @@
+<div x-show="showModal" id="large-modal" tabindex="-1"
+    class=" fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50">
+    <div class="relative p-4 w-full max-w-4xl h-full md:h-auto" @click.away="showModal = false"
+        x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
+        x-transition:enter-end="opacity-100 scale-100">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center p-5 rounded-t border-b dark:border-gray-600">
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">
+                    Filter by
+                </h3>
+                <button type="button"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-toggle="large-modal" @click="showModal = false">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="" method="get">
+                <div class="p-6 space-y-6">
+                    <div class="py-10" id="disclosure-1">
+                        <div class="max-w-7xl mx-auto grid grid-cols-2 gap-x-4 px-4 text-sm sm:px-6 md:gap-x-6 lg:px-8">
+                            <div class="grid grid-cols-1 gap-y-10 auto-rows-min md:grid-cols-2 md:gap-x-6">
+                                <fieldset>
+                                    <legend class="block font-medium">cusine</legend>
+                                    <div class="pt-6 space-y-6 sm:pt-4 sm:space-y-4">
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="price-0" name="cuisines" value="5" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="price-0"
+                                                class="ml-3 min-w-0 flex-1 text-gray-600">American</label>
+                                        </div>
+
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="price-1" name="cuisines" value="4" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="price-1" class="ml-3 min-w-0 flex-1 text-gray-600"> Indian
+                                            </label>
+                                        </div>
+
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="price-2" name="cuisines" value="3" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="price-2" class="ml-3 min-w-0 flex-1 text-gray-600"> Chinese
+                                            </label>
+                                        </div>
+
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="price-3" name="cuisines" value="2" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="price-3" class="ml-3 min-w-0 flex-1 text-gray-600"> Japanese
+                                            </label>
+                                        </div>
+
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="price-3" name="cuisines" value="1" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="price-3" class="ml-3 min-w-0 flex-1 text-gray-600"> Italian
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend class="block font-medium">Rating</legend>
+                                    <div class="pt-6 space-y-6 sm:pt-4 sm:space-y-4">
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="color-0" name="average_rating" value="5" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="color-0" class="ml-3 min-w-0 flex-1 text-gray-600">
+                                                <span class="flex items-center">
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="color-1" name="average_rating" value="4" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="color-1" class="ml-3 min-w-0 flex-1 text-gray-600">
+                                                <span class="flex items-center">
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="color-2" name="average_rating" value="3" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="color-2" class="ml-3 min-w-0 flex-1 text-gray-600">
+                                                <span class="flex items-center">
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="color-3" name="average_rating" value="2" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="color-3" class="ml-3 min-w-0 flex-1 text-gray-600">
+                                                <span class="flex items-center">
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="color-4" name="average_rating" value="1" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="color-4" class="ml-3 min-w-0 flex-1 text-gray-600">
+                                                <span class="flex items-center">
+                                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" aria-hidden="true">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="grid grid-cols-1 gap-y-10 auto-rows-min md:grid-cols-2 md:gap-x-6">
+                                <fieldset>
+                                    <legend class="block font-medium">Type</legend>
+                                    <div class="pt-6 space-y-6 sm:pt-4 sm:space-y-4">
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="size-0" name="type" value="veg" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="size-0" class="ml-3 min-w-0 flex-1 text-gray-600"> Veg </label>
+                                        </div>
+
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="size-1" name="type" value="non-veg" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="size-1" class="ml-3 min-w-0 flex-1 text-gray-600"> Non-Veg
+                                            </label>
+                                        </div>
+
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="size-2" name="type" value="vegan" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="size-2" class="ml-3 min-w-0 flex-1 text-gray-600"> Vegan
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend class="block font-medium">Statue</legend>
+                                    <div class="pt-6 space-y-6 sm:pt-4 sm:space-y-4">
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="category-0" name="status" value="open" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="category-0" class="ml-3 min-w-0 flex-1 text-gray-600"> Open
+                                            </label>
+                                        </div>
+
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input id="category-1" name="status" value="close" type="checkbox"
+                                                class="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="category-1" class="ml-3 min-w-0 flex-1 text-gray-600"> Close
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex justify-center p-6 space-x-2 rounded-b border-gray-200">
+                    <button data-modal-toggle="large-modal" type="submit"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Filter</button>
+                    <button data-modal-toggle="large-modal" type="button"
+                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                        @click="showModal = false">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -7,14 +7,6 @@ from django.urls import reverse
 
 # Create your models here.
 
-TYPE_CHOICES = (
-    ("veg", "Veg"),
-    ("vegan", "Vegan"),
-    ("non-veg", "Non-Veg"),
-)
-
-STATUS = (("open", "Open"), ("close", "Close"))
-
 FOOD_TYPE_CHOICES = (
     ("veg", "Veg"),
     ("non-veg", "Non-Veg"),
@@ -29,6 +21,14 @@ class Cuisine(models.Model):
 
 
 class Restaurant(models.Model):
+    TYPE_CHOICES = (
+        ("veg", "Veg"),
+        ("vegan", "Vegan"),
+        ("non-veg", "Non-Veg"),
+    )
+
+    STATUS = (("open", "Open"), ("close", "Close"))
+
     title = models.CharField(max_length=200)
     cost_for_two = models.DecimalField(max_digits=10, decimal_places=2)
     owner = models.ForeignKey(

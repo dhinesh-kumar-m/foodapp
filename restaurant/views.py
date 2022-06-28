@@ -1,6 +1,3 @@
-from audioop import reverse
-
-from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -13,32 +10,6 @@ from .models import Rating
 from .models import Restaurant
 
 # Create your views here.
-def index(request):
-    return render(request, "restaurant/list.html")
-
-
-def restaurant_list(request, list=None):
-    sort = request.GET.get("order", "id")
-    search = request.GET.get("search", None)
-    restaurants = Restaurant.objects.order_by(sort)
-    user = request.user
-
-    if list == "bookmark":
-        restaurants = restaurants.filter(users_bookmark=user)
-    elif list == "visited":
-        restaurants = restaurants.filter(users_visit=user)
-    elif list == "spotlighted":
-        restaurants = restaurants.filter(is_spotlighted=True)
-
-    if search:
-        restaurants = restaurants.filter(title__icontains=search)
-
-    if request.method == "POST":
-        restaurants = search_filter(request, restaurants)
-
-    return render(
-        request, "restaurant/list.html", {"restaurants": restaurants, "list": list}
-    )
 
 
 class RestaurantListMixin(ListView):

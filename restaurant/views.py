@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
 from .filters import RestaurantFilter
@@ -52,6 +53,24 @@ class SpotlightList(RestaurantListMixin):
         queryset = super().get_queryset()
         queryset = queryset.filter(is_spotlighted=True)
         return queryset
+
+
+class RestaurantDetail(DetailView):
+    model = Restaurant
+    template_name = "restaurant/detail.html"
+    context_object_name = "restaurant"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["user_review"] = (
+            self.get_object().rating_set.filter(user=self.request.user).first()
+        )
+        return context
+
+    def get_object(self):
+        object = super().get_object()
+        object.users_visit.add(self.request.user)
+        return object
 
 
 def restaurant_detail(request, id):

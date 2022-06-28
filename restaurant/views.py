@@ -17,6 +17,10 @@ from .models import Restaurant
 # Create your views here.
 
 
+def redirect_dashboard(request):
+    return redirect("restaurant:restaurant_list")
+
+
 class RestaurantListMixin(ListView):
     model = Restaurant
 

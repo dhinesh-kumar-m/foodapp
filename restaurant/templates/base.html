@@ -30,16 +30,16 @@
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
                         <a href="{% url 'restaurant:restaurant_list' %}"
-                            class="{% if list == none %}border-red-500 text-gray-900{% endif %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            class="{% if request.path == '/restaurant' %}border-red-500 text-gray-900{% endif %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Restaurant </a>
                         <a href="{% url 'restaurant:bookmark_list' %}"
-                            class="{% if list == 'bookmark' %}border-red-500 text-gray-900{% endif %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            class="{% if request.path == '/restaurant/bookmark' %}border-red-500 text-gray-900{% endif %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Bookmarks </a>
                             <a href="{% url 'restaurant:visited_list' %}"
-                            class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            class="{% if request.path == '/restaurant/visited' %}border-red-500 text-gray-900{% endif %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Visited </a>
                         <a href="{% url 'restaurant:spotlight_list' %}"
-                            class="{% if list == 'spotlighted' %}border-red-500 text-gray-900{% endif %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            class="{% if request.path == '/restaurant/spotlight' %}border-red-500 text-gray-900{% endif %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Spotlight </a>
                     </div>
                 </div>

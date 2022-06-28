@@ -19,12 +19,14 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include
 from django.urls import path
+from restaurant import views
 
 urlpatterns = [
+    path("", views.redirect_dashboard),
     path("admin/", admin.site.urls),
     path("login", auth_views.LoginView.as_view(), name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
-    path("", include("restaurant.urls")),
+    path("restaurant/", include("restaurant.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
 ]
 if settings.DEBUG:

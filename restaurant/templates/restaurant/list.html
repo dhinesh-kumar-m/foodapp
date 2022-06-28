@@ -54,18 +54,24 @@
 
     <div class="origin-top-right absolute right-64 z-10 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="filter" @click.away="filter = false" style="top: 130px;">
       <div class="py-1" role="none">
-        <form action="" method="get">
+        <a href="{% url 'restaurant:restaurant_list' %}?order_by=cost_for_two&{{ request.GET.urlencode }}" class="text-gray-500 block px-4 py-2 text-sm">Cost of two</a>
+        <a href="{% url 'restaurant:restaurant_list' %}?order_by=average_rating&{{ request.GET.urlencode }}" class="text-gray-500 block px-4 py-2 text-sm">Rating: Low to High</a>
+        <a href="{% url 'restaurant:restaurant_list' %}?order_by=-average_rating&{{ request.GET.urlencode }}" class="text-gray-500 block px-4 py-2 text-sm">Rating: High to Low</a>
+        <!-- <form action="#" method="get">
           <input type="hidden" value="cost_for_two" name="order_by">
           <button type="submit"  class="text-gray-500 block px-4 py-2 text-sm" id="menu-item-0">Cost of two</button>
         </form>
-        <form action="" method="get">
+        <form action="#" method="get">
           <input type="hidden" value="average_rating" name="order_by">
           <button type="submit"  class="text-gray-500 block px-4 py-2 text-sm" id="menu-item-0">Rating: Low to High</button>
         </form>
-        <form action="" method="get">
+        <div>
+          {{request.GET.urlencode}}
+        </div>
+        <form action="#" method="get">
           <input type="hidden" value="-average_rating" name="order_by">
           <button type="submit"  class="text-gray-500 block px-4 py-2 text-sm" id="menu-item-0">Rating: High to Low</button>
-        </form>
+        </form> -->
       </div>
     </div>
   </div>

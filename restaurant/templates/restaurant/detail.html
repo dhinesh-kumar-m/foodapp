@@ -194,8 +194,8 @@
                     <!-- Trigger for Modal -->
                     <button type="button" @click="showModal = true">edit</button>
 
-                    <form action="{% url 'restaurant:review_delete' user_review.id %}" method="delete"
-                      class="inline-block">
+                    <form action="{% url 'restaurant:review_delete' user_review.id %}" method="post"
+                      class="inline-block">{% csrf_token %}
                       <button type="submit">delete</button>
                     </form>
                     <!-- Modal -->

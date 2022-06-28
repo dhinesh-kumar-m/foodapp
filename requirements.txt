@@ -12,6 +12,7 @@ distlib==0.3.4
 Django==4.0.5
 django-browser-reload==1.6.0
 django-environ==0.9.0
+django-filter==22.1
 django-tailwind==3.3.0
 filelock==3.7.1
 identify==2.5.1

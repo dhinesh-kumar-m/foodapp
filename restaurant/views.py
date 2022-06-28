@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic.list import ListView
 
+from .filters import RestaurantFilter
 from .forms import RatingForm
 from .models import Rating
 from .models import Restaurant
@@ -38,6 +39,30 @@ def restaurant_list(request, list=None):
     return render(
         request, "restaurant/list.html", {"restaurants": restaurants, "list": list}
     )
+
+
+class RestaurantList(ListView):
+    model = Restaurant
+    template_name = "restaurant/list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["filter"] = RestaurantFilter(
+            self.request.GET, queryset=self.get_queryset()
+        )
+        return context
+
+
+class BookmarkList(ListView):
+    pass
+
+
+class VisitedList(ListView):
+    pass
+
+
+class SpotlightList(ListView):
+    pass
 
 
 def search_filter(request, restaurants):

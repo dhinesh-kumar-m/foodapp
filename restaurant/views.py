@@ -73,20 +73,6 @@ class RestaurantDetail(DetailView):
         return object
 
 
-def restaurant_detail(request, id):
-    restaurant = get_object_or_404(Restaurant, id=id)
-    if restaurant not in request.user.restaurants_visited.all():
-        restaurant.users_visit.add(request.user)
-    user_review = restaurant.rating_set.filter(user=request.user)
-    if user_review.count() > 0:
-        user_review = user_review[0]
-    return render(
-        request,
-        "restaurant/detail.html",
-        {"restaurant": restaurant, "user_review": user_review},
-    )
-
-
 def add_review(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
     form = RatingForm(request.POST)

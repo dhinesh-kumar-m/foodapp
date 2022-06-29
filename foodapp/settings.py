@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
+import django_heroku
 import environ
 
 env = environ.Env()
@@ -156,3 +157,6 @@ NPM_BIN_PATH = "/usr/bin/npm"
 LOGIN_REDIRECT_URL = "restaurant:restaurant_list"
 
 LOGOUT_REDIRECT_URL = "login"
+
+
+django_heroku.settings(locals())

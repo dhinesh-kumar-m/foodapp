@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -36,7 +37,7 @@ class RestaurantList(RestaurantListMixin):
     template_name = "restaurant/list.html"
 
 
-class BookmarkList(RestaurantListMixin):
+class BookmarkList(LoginRequiredMixin, RestaurantListMixin):
     template_name = "restaurant/bookmark/list.html"
 
     def get_queryset(self):
@@ -45,7 +46,7 @@ class BookmarkList(RestaurantListMixin):
         return queryset
 
 
-class VisitedList(RestaurantListMixin):
+class VisitedList(LoginRequiredMixin, RestaurantListMixin):
     template_name = "restaurant/visited/list.html"
 
     def get_queryset(self):
@@ -63,7 +64,7 @@ class SpotlightList(RestaurantListMixin):
         return queryset
 
 
-class RestaurantDetail(DetailView):
+class RestaurantDetail(LoginRequiredMixin, DetailView):
     model = Restaurant
     template_name = "restaurant/detail.html"
     context_object_name = "restaurant"

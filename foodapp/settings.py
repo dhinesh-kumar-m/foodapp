@@ -168,5 +168,7 @@ LOGIN_REDIRECT_URL = "restaurant:restaurant_list"
 
 LOGOUT_REDIRECT_URL = "login"
 
+LOGIN_URL = "login"
+
 
 django_heroku.settings(locals())

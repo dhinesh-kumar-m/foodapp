@@ -8,7 +8,16 @@
 
 <div class="bg-white">
   <div class="max-w-2xl mx-auto px-4 sm:py-6 sm:px-6 lg:max-w-7xl lg:px-8">
-    <!-- <h2 class="text-xl font-bold text-gray-900">Customers also bought</h2> -->
+
+    {% if page == 'visited' %}
+    <h2 class="text-xl font-bold text-gray-900">Restaurants visited by you</h2>
+    {% elif  page == 'bookmark' %}
+    <h2 class="text-xl font-bold text-gray-900">Restaurant you you bookmarked</h2>
+    {% elif  page == 'spotlight' %}
+    <h2 class="text-xl font-bold text-gray-900">Spotlighted Sestaurants</h2>
+    {% else %}
+    <h2 class="text-xl font-bold text-gray-900">Listing Restaurants near you</h2>
+    {% endif %}
 
     <div class="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
       {% for restaurant in filter.qs %}

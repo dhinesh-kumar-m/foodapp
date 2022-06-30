@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
-from django.shortcuts import render
 from django.urls import reverse
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
@@ -11,7 +10,6 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 
 from .filters import RestaurantFilter
-from .forms import RatingForm
 from .models import Rating
 from .models import Restaurant
 

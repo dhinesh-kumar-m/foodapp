@@ -22,7 +22,7 @@ def redirect_dashboard(request):
     return redirect("restaurant:restaurant_list")
 
 
-class RestaurantListMixin(ListView):
+class RestaurantFilterMixin(ListView):
     model = Restaurant
 
     def get_context_data(self, **kwargs):
@@ -33,11 +33,11 @@ class RestaurantListMixin(ListView):
         return context
 
 
-class RestaurantList(RestaurantListMixin):
+class RestaurantList(RestaurantFilterMixin):
     template_name = "restaurant/list.html"
 
 
-class BookmarkList(LoginRequiredMixin, RestaurantListMixin):
+class BookmarkList(LoginRequiredMixin, RestaurantFilterMixin):
     template_name = "restaurant/bookmark/list.html"
 
     def get_queryset(self):
@@ -46,7 +46,7 @@ class BookmarkList(LoginRequiredMixin, RestaurantListMixin):
         return queryset
 
 
-class VisitedList(LoginRequiredMixin, RestaurantListMixin):
+class VisitedList(LoginRequiredMixin, RestaurantFilterMixin):
     template_name = "restaurant/visited/list.html"
 
     def get_queryset(self):
@@ -55,7 +55,7 @@ class VisitedList(LoginRequiredMixin, RestaurantListMixin):
         return queryset
 
 
-class SpotlightList(RestaurantListMixin):
+class SpotlightList(RestaurantFilterMixin):
     template_name = "restaurant/spotlight/list.html"
 
     def get_queryset(self):

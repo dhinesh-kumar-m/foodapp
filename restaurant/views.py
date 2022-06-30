@@ -112,8 +112,8 @@ class DeleteReview(ReviewMixin, DeleteView):
     pass
 
 
-def add_bookmark(request, id):
-    restaurant = get_object_or_404(Restaurant, id=id)
+def add_bookmark(request, restaurant_id):
+    restaurant = get_object_or_404(Restaurant, id=restaurant_id)
     if request.user.restaurants_bookmarked.filter(id=restaurant.id).exists():
         request.user.restaurants_bookmarked.remove(restaurant)
     else:
@@ -121,7 +121,7 @@ def add_bookmark(request, id):
     return redirect(reverse("restaurant:restaurant_detail", args=[id]))
 
 
-def delete_visited(request, id):
-    restaurant = get_object_or_404(Restaurant, id=id)
-    restaurant.users_visit.remove(request.user)
+def delete_visited(request, restaurant_id):
+    restaurant = get_object_or_404(Restaurant, id=restaurant_id)
+    request.user.restaurants_visited.remove(restaurant)
     return redirect("restaurant:visited_list")

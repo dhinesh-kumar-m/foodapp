@@ -21,6 +21,6 @@ urlpatterns = [
         views.DeleteReview.as_view(),
         name="review_delete",
     ),
-    path("bookmark/<int:id>", views.add_bookmark, name="bookmark"),
-    path("visited/<int:id>", views.delete_visited, name="remove_visited"),
+    path("bookmark/<int:restaurant_id>", views.add_bookmark, name="bookmark"),
+    path("visited/<int:restaurant_id>", views.delete_visited, name="remove_visited"),
 ]

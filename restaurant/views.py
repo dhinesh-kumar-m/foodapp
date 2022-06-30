@@ -40,15 +40,6 @@ class VisitedList(LoginRequiredMixin, RestaurantFilterMixin):
         return queryset
 
 
-class SpotlightList(RestaurantFilterMixin):
-    template_name = "restaurant/spotlight/list.html"
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(is_spotlighted=True)
-        return queryset
-
-
 class RestaurantDetail(LoginRequiredMixin, DetailView):
     model = Restaurant
     template_name = "restaurant/detail.html"

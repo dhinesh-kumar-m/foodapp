@@ -27,7 +27,7 @@ class RestaurantFilterMixin(ListView):
 
 
 class RestaurantList(RestaurantFilterMixin):
-    template_name = "restaurant/list.html"
+    template_name = "restaurant/restaurant_list.html"
 
 
 class RestaurantDetail(LoginRequiredMixin, DetailView):

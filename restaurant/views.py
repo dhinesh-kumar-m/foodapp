@@ -114,10 +114,10 @@ class DeleteReview(ReviewMixin, DeleteView):
 
 def add_bookmark(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
-    if restaurant in request.user.restaurants_bookmarked.all():
-        restaurant.users_bookmark.remove(request.user)
+    if request.user.restaurants_bookmarked.filter(id=restaurant.id).exists():
+        request.user.restaurants_bookmarked.remove(request.user)
     else:
-        restaurant.users_bookmark.add(request.user)
+        request.user.restaurants_bookmarked.add(request.user)
     return redirect(reverse("restaurant:restaurant_detail", args=[id]))
 
 

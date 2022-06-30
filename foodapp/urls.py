@@ -20,9 +20,10 @@ from django.contrib.auth import views as auth_views
 from django.urls import include
 from django.urls import path
 from restaurant import views
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    path("", views.redirect_dashboard),
+    path('',RedirectView.as_view(pattern_name='restaurant:restaurant_list', permanent=False)),
     path("admin/", admin.site.urls),
     path("login", auth_views.LoginView.as_view(), name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),

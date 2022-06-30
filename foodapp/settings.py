@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     "django_browser_reload",
     "django_filters",
     "whitenoise.runserver_nostatic",
+    "bookmark.apps.BookmarkConfig",
+    "visited.apps.VisitedConfig",
+    "spotlight.apps.SpotlightConfig",
 ]
 
 MIDDLEWARE = [

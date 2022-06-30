@@ -27,6 +27,7 @@ urlpatterns = [
     path("login", auth_views.LoginView.as_view(), name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("restaurant/", include("restaurant.urls")),
+    path("bookmarks/", include("bookmark.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
 ]
 if settings.DEBUG:

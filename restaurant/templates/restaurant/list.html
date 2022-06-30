@@ -58,7 +58,7 @@
             </form>
             {% endif %}
             {% if page == 'bookmark' %}
-            <form action="{% url 'restaurant:bookmark' restaurant.id %}" method="post">
+            <form action="{% url 'bookmark:bookmark' restaurant.id %}" method="post">
               {% csrf_token %}
                 <button type="submit"
                   class="bottom-56 relative inline-flex items-center px-2 py-2 rounded-l-md  text-sm font-medium focus:z-10 ">

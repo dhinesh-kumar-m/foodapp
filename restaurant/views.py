@@ -31,15 +31,6 @@ class RestaurantList(RestaurantFilterMixin):
     template_name = "restaurant/list.html"
 
 
-class BookmarkList(LoginRequiredMixin, RestaurantFilterMixin):
-    template_name = "restaurant/bookmark/list.html"
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(users_bookmark=self.request.user)
-        return queryset
-
-
 class VisitedList(LoginRequiredMixin, RestaurantFilterMixin):
     template_name = "restaurant/visited/list.html"
 
@@ -97,15 +88,6 @@ class UpdateReview(ReviewMixin, UpdateView):
 
 class DeleteReview(ReviewMixin, DeleteView):
     pass
-
-
-def add_bookmark(request, restaurant_id):
-    restaurant = get_object_or_404(Restaurant, id=restaurant_id)
-    if request.user.restaurants_bookmarked.filter(id=restaurant.id).exists():
-        request.user.restaurants_bookmarked.remove(restaurant)
-    else:
-        request.user.restaurants_bookmarked.add(restaurant)
-    return redirect(reverse("restaurant:restaurant_detail", args=[id]))
 
 
 def delete_visited(request, restaurant_id):

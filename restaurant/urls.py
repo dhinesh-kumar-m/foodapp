@@ -6,7 +6,6 @@ app_name = "restaurant"
 
 urlpatterns = [
     path("", views.RestaurantList.as_view(), name="restaurant_list"),
-    path("visited", views.VisitedList.as_view(), name="visited_list"),
     path("<pk>", views.RestaurantDetail.as_view(), name="restaurant_detail"),
     path("review/<pk>", views.AddReview.as_view(), name="review"),
     path(
@@ -19,5 +18,4 @@ urlpatterns = [
         views.DeleteReview.as_view(),
         name="review_delete",
     ),
-    path("visited/<int:restaurant_id>", views.delete_visited, name="remove_visited"),
 ]

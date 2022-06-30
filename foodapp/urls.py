@@ -29,6 +29,7 @@ urlpatterns = [
     path("restaurant/", include("restaurant.urls")),
     path("bookmarks/", include("bookmark.urls")),
     path("spotlights/", include("spotlight.urls")),
+    path("visited/", include("visited.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
 ]
 if settings.DEBUG:

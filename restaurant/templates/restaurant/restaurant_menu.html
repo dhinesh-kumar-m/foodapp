@@ -1,0 +1,18 @@
+<div x-show="tab === 'menu'" id="tab-panel-faq" class="text-sm text-gray-500" aria-labelledby="tab-faq" role="tabpanel"
+    tabindex="0">
+    <h3 class="sr-only">Menu</h3>
+    <dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
+        <div class="flex justify-between">
+            <dt class="text-gray-900 leading-tight">Dish Name</dt>
+            <dd class="text-gray-900 leading-tight">Price</dd>
+        </div>
+        {% for menu in restaurant.menu_set.all %}
+        {% for dish in menu.dish_set.all %}
+        <div class="flex justify-between">
+            <dt>{{dish.name}}</dt>
+            <dd class="text-gray-900">{{dish.price}}</dd>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </dl>
+</div>

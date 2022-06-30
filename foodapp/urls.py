@@ -23,12 +23,7 @@ from django.views.generic import RedirectView
 from restaurant import views
 
 urlpatterns = [
-    path(
-        "",
-        RedirectView.as_view(
-            pattern_name="restaurant:restaurant_list", permanent=False
-        ),
-    ),
+    path('',RedirectView.as_view(pattern_name='restaurant:restaurant_list', permanent=False)),
     path("admin/", admin.site.urls),
     path("login", auth_views.LoginView.as_view(), name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),

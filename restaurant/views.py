@@ -63,13 +63,6 @@ class RestaurantDetail(LoginRequiredMixin, DetailView):
     template_name = "restaurant/detail.html"
     context_object_name = "restaurant"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["user_review"] = (
-            self.get_object().rating_set.filter(user=self.request.user).first()
-        )
-        return context
-
     def get_object(self):
         object = super().get_object()
         object.users_visit.add(self.request.user)

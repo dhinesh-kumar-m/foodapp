@@ -1,14 +1,14 @@
-from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from restaurant.views import RestaurantFilterMixin
-from restaurant.models import Restaurant
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.shortcuts import render
+from restaurant.models import Restaurant
+from restaurant.views import RestaurantListFilterMixin
 
 # Create your views here.
 
 
-class VisitedList(LoginRequiredMixin, RestaurantFilterMixin):
+class VisitedList(LoginRequiredMixin, RestaurantListFilterMixin):
     template_name = "visited/list.html"
 
     def get_queryset(self):

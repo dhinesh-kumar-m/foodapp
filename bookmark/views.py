@@ -4,12 +4,12 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
 from restaurant.models import Restaurant
-from restaurant.views import RestaurantFilterMixin
+from restaurant.views import RestaurantListFilterMixin
 
 # Create your views here.
 
 
-class BookmarkList(LoginRequiredMixin, RestaurantFilterMixin):
+class BookmarkList(LoginRequiredMixin, RestaurantListFilterMixin):
     template_name = "bookmark/list.html"
 
     def get_queryset(self):

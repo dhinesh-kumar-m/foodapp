@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from restaurant.views import RestaurantFilterMixin
+from restaurant.views import RestaurantListFilterMixin
 
 # Create your views here.
 
 
-class SpotlightList(RestaurantFilterMixin):
+class SpotlightList(RestaurantListFilterMixin):
     template_name = "spotlight/list.html"
 
     def get_queryset(self):

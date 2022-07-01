@@ -1,5 +1,5 @@
 <div class="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-  {% for restaurant in filter.qs %}
+  {% for restaurant in object_list %}
 
   <div class="relative">
     <a href="{{restaurant.get_absolute_url}}">

@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
+from django_filters.views import FilterView
 
 from .filters import RestaurantFilter
 from .models import Rating
@@ -15,18 +16,13 @@ from .models import Restaurant
 # Create your views here.
 
 
-class RestaurantFilterMixin(ListView):
+class RestaurantListFilterMixin(FilterView, ListView):
     model = Restaurant
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["filter"] = RestaurantFilter(
-            self.request.GET, queryset=self.get_queryset()
-        )
-        return context
+    paginate_by = 4
+    filterset_class = RestaurantFilter
 
 
-class RestaurantList(RestaurantFilterMixin):
+class RestaurantList(RestaurantListFilterMixin):
     template_name = "restaurant/restaurant/list.html"
 
 

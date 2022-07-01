@@ -58,3 +58,8 @@
   </div>
   {% endfor %}
 </div>
+{% for restaurant in object_list %}
+{% empty %}
+{% include 'restaurant/empty_list.html' %}
+{% endfor %}
+

@@ -27,12 +27,12 @@ class RestaurantFilterMixin(ListView):
 
 
 class RestaurantList(RestaurantFilterMixin):
-    template_name = "restaurant/restaurant_list.html"
+    template_name = "restaurant/restaurant/list.html"
 
 
 class RestaurantDetail(LoginRequiredMixin, DetailView):
     model = Restaurant
-    template_name = "restaurant/detail.html"
+    template_name = "restaurant/restaurant/detail.html"
     context_object_name = "restaurant"
 
     def get_object(self):
@@ -44,7 +44,7 @@ class RestaurantDetail(LoginRequiredMixin, DetailView):
 class ReviewMixin:
     model = Rating
     fields = ["rating", "review"]
-    template_name = "restaurant/detail.html"
+    template_name = "restaurant/restaurant/detail.html"
 
     def get_success_url(self):
         return reverse_lazy(

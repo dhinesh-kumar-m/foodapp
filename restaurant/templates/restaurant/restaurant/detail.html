@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load restaurant_tags %}
+{% load static %}
+{% block title %}Restaurant Detail{% endblock %}
+{% block content %}
+
+<div class="bg-white">
+  <div class="mx-auto py-16 px-4 sm:py-2 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div class="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
+      <!-- Restaurant image -->
+      {% include 'restaurant/restaurant_image.html' %}
+
+      <!-- Restaurant details -->
+      {% include 'restaurant/restaurant_detail.html' %}
+
+      <div class="w-full max-w-2xl mx-auto mt-16 lg:max-w-none lg:mt-0 lg:col-span-4">
+          <div x-data="{ tab: 'menu' }">
+              <div class="border-b border-gray-200">
+                  <div class="-mb-px flex space-x-8" aria-orientation="horizontal" role="tablist">
+                      <button @click="tab = 'menu'" id="tab-faq"
+                          class="border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300 whitespace-nowrap py-6 border-b-2 font-medium text-sm"
+                          aria-controls="tab-panel-faq" role="tab" type="button">Menu</button>
+                      <button @click="tab = 'review'" id="tab-reviews"
+                          class="border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300 whitespace-nowrap py-6 border-b-2 font-medium text-sm"
+                          aria-controls="tab-panel-reviews" role="tab" type="button">Customer Reviews</button>
+                  </div>
+              </div>
+              <!-- Restaurant menu -->
+              {% include 'restaurant/restaurant_menu.html' %}
+              <!-- Restaurant review -->
+              {% include 'restaurant/restaurant_review.html' %}
+          </div>
+      </div>
+  </div>
+  </div>
+  </div>
+  {% endblock %}

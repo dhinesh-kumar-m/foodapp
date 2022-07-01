@@ -43,10 +43,8 @@
       <form action="{% url 'bookmark:bookmark' restaurant.id %}" method="post">
         {% csrf_token %}
         <button type="submit"
-          class="bottom-56 relative inline-flex items-center px-2 py-2 rounded-l-md  text-sm font-medium focus:z-10 ">
-          <svg
-            class="-ml-1  h-16 w-16 {% if restaurant in request.user.restaurants_bookmarked.all %} text-blue-500 {% else %} text-gray-400 {% endif %}"
-            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          class="bottom-60 relative inline-flex items-center rounded-l-md  text-sm font-medium focus:z-10 ">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8  {% if restaurant in request.user.restaurants_bookmarked.all %} text-blue-500 {% else %} text-gray-400 {% endif %}"" viewBox="0 0 20 20" fill="currentColor">
             <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
           </svg>
         </button>

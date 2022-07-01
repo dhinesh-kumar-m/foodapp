@@ -18,7 +18,7 @@ from .models import Restaurant
 
 class RestaurantListFilterMixin(FilterView, ListView):
     model = Restaurant
-    paginate_by = 4
+    paginate_by = 8
     filterset_class = RestaurantFilter
 
 

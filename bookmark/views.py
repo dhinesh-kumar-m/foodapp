@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from restaurant.models import Restaurant
 from restaurant.views import RestaurantListFilterMixin
+from django.contrib import messages
 
 # Create your views here.
 
@@ -22,6 +23,8 @@ def add_bookmark(request, restaurant_id):
     restaurant = get_object_or_404(Restaurant, id=restaurant_id)
     if request.user.restaurants_bookmarked.filter(id=restaurant.id).exists():
         request.user.restaurants_bookmarked.remove(restaurant)
+        messages.success(request, 'Removed successful')
     else:
         request.user.restaurants_bookmarked.add(restaurant)
+        messages.success(request, 'Added to bookmark successfully')
     return redirect(reverse("restaurant:restaurant_detail", args=[restaurant_id]))
